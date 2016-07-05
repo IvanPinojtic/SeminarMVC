@@ -1,0 +1,21 @@
+﻿﻿﻿﻿@model HashSet<SeminarMVC.Models.Staff>
+<table id="tbl-staffs" class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Pozicija</th>
+            <th>Zvijezdice</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var staff in Model)
+        {
+            <tr onmouseover="setMaxOpacity(this);" onmouseout="setLowOpacity(this);">
+                <td>@staff.Ime</td>
+                <td>@staff.Pozicija</td>
+                <td>@staff.Zvez</td>
+                <td>@Html.ActionLink("Obriši", "DeleteStaff", new { id = staff.ID })</td>
+            </tr>
+        }
+    </tbody>
+</table>

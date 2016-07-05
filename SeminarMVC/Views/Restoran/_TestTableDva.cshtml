@@ -1,0 +1,20 @@
+﻿﻿﻿﻿@model HashSet<SeminarMVC.Models.Menu>
+<table id="tbl-staffs" class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Cijena</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var menu in Model)
+        {
+            <tr onmouseover="setMaxOpacity(this);" onmouseout="setLowOpacity(this);">
+                <td>@menu.Ime</td>
+                <td>@menu.Cijena</td>
+                <td>@Html.ActionLink("Obriši", "DeleteMenu", new { id = menu.ID })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

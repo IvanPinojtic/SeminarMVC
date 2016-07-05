@@ -1,0 +1,26 @@
+﻿﻿﻿﻿@model List<SeminarMVC.Models.Grad>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Pregled gradova</h2>
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Naziv</th>
+            <th>Država</th>
+            <th>@Html.ActionLink("Dodaj", "CreateCity")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var city in Model)
+        {
+            <tr>
+                <td>@city.ID</td>
+                <td>@Html.ActionLink(city.Ime, "Details", new { id = city.ID })</td>
+                <td>@city.Drzava</td>
+                <td>@Html.ActionLink("Obriši", "DeleteCity", new { id = city.ID })</td>
+            </tr>
+        }
+    </tbody>
+</table>

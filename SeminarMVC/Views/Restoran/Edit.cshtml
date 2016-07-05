@@ -1,0 +1,20 @@
+﻿﻿﻿@model SeminarMVC.Models.Restoran
+@{
+    ViewBag.Title = "Uredi restoran";
+}
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Pregled restorana", "Index")</li>
+    <li class="active">Uređivanje restorana @Model.Ime</li>
+</ol>
+<h2>Uredi restoran</h2>
+@using (Html.BeginForm())
+{
+    <text>
+        @Html.Partial("_CreateOrEdit")
+        @Html.HiddenFor(p => p.ID)
+    </text>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

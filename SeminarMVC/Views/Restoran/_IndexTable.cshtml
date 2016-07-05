@@ -1,0 +1,29 @@
+﻿﻿﻿﻿@model List<SeminarMVC.Models.Restoran>
+<table id="tbl-restorans" class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Naziv</th>
+            <th>Zvijezdice</th>
+            <th>Adresa</th>          
+            <th>Grad</th>
+            <th>Uredi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var restoran in Model)
+        {
+            <tr onmouseover="setMaxOpacity(this);" onmouseout="setLowOpacity(this);">
+                <td>@restoran.ID</td>
+                <td>@Html.ActionLink(restoran.Ime, "Details", new { id = restoran.ID })</td>
+                <td>@restoran.Zvez</td>
+                <td>@restoran.Adresa</td>                
+                <td>@restoran.Grad.Ime</td>
+                <td>
+                    @Html.ActionLink("Uredi", "Edit", new { id = restoran.ID })
+                    @Html.ActionLink("Obriši", "Delete", new { id = restoran.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

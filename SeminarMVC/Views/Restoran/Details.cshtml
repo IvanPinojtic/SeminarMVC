@@ -1,0 +1,78 @@
+﻿﻿﻿﻿@model SeminarMVC.Models.Restoran
+@{
+    ViewBag.Title = "Detalji restorana";
+}
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Pregled restorana", "Index")</li>
+    <li class="active">Detalji o restoranu</li>
+</ol>
+<h2>Pregled detalja restorana</h2>
+@if (Model == null)
+{
+    <div class="alert alert-danger" role="alert">Ne postoji odabran restoran!</div>
+}
+else
+{
+    <table class="table table-condensed">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>@Model.ID</td>
+            </tr>
+            <tr>
+                <th>Naziv</th>
+                <td>@Model.Ime</td>
+            </tr>
+            <tr>
+                <th>Zvijezdice</th>
+                <td>@Model.Zvez</td>
+            </tr>
+            <tr>
+                <th>Kapacitet</th>
+                <td>@Model.Kapacitet</td>
+            </tr>
+            <tr>
+                <th>Adresa</th>
+                <td>@Model.Adresa</td>
+            </tr>
+            
+            <tr>
+                <th>Grad</th>
+                <td><a href="#" class="city-popover">@Model.Grad.Ime</a></td>
+            </tr>
+            <tr>
+                <td colspan="2">@Html.ActionLink("Uredi", "Edit", new { id = Model.ID })</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-xs-8">
+            <h2>Menu</h2>
+        </div>
+        <div class="col-xs-4 text-right">
+            <a href="@Url.Action("CreateMenu",new { id = Model.ID })" style="margin-top: 20px;" class="btn btn-success">Dodaj menu</a>
+        </div>
+    </div>
+    @Html.Partial("_TestTableDva", Model.Menus)
+    <div class="row">
+        <div class="col-xs-8">
+            <h2>Osoblje</h2>
+        </div>
+        <div class="col-xs-4 text-right">
+            <a href="@Url.Action("CreateStaff",new { id = Model.ID })" style="margin-top: 20px;" class="btn btn-success">Dodaj osobu</a>
+        </div>
+    </div>
+    @Html.Partial("_TestTable", Model.Staffs)
+    
+}
+<div class="hidden" id="popover-data">
+    @Html.Action("DetailsPartial", "City", new { id = Model.GradID, area = "Admin" })
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".city-popover").popover({ content: $("#popover-data").html(), html: true });
+        });
+    </script>
+}

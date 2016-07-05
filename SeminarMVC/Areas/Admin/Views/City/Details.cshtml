@@ -1,0 +1,18 @@
+﻿﻿﻿﻿@model SeminarMVC.Models.Grad
+@{
+    ViewBag.Title = "Detalji o gradu";
+}
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+    <li>@Html.ActionLink("Pregled gradova", "Index")</li>
+    <li class="active">Detalji o gradu</li>
+</ol>
+<h2>Pregled detalja grada</h2>
+@if (Model == null)
+{
+    <div class="alert alert-danger" role="alert">Ne postoji odabrani grad!</div>
+}
+else
+{
+    @Html.Partial("_DetailsPartial", Model)
+}
